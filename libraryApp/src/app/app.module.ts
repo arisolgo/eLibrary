@@ -8,6 +8,9 @@ import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import { ReadBookComponent } from './read-book/read-book.component';
+import { ListenBookComponent } from './listen-book/listen-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     RegisterComponent,
     LibraryComponent,
     CreateBookComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    ReadBookComponent,
+    ListenBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
