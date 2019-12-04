@@ -11,6 +11,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { ReadBookComponent } from './read-book/read-book.component';
 import { ListenBookComponent } from './listen-book/listen-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditBookComponent } from './edit-book/edit-book.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
