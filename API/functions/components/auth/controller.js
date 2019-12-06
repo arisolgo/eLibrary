@@ -21,7 +21,7 @@ function login( email, password, db, config, jwt){
                 user = {
                     id:doc.id,
                     userName: doc.data().userName,
-                    password: doc.data().name,
+                    password: doc.data().password,
                     token: token
 
                 }
