@@ -1,8 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const config = require('../config/config');
+const jwt = require('jsonwebtoken');
+const verifyToken = require('../config/verifyToken')
 const response = require('./response');
 const bookController = require('../components/book/controller');
 const userController = require('../components/user/controller');
+const registerController = require('../components/register/controller')
+const authController = require('../components/auth/controller');
+
+
 
 const admin = require('firebase-admin');
 const serviceAccount = require("../jsonService.json");
@@ -14,8 +21,36 @@ console.log("Conectado a la base de datos")
 db = admin.firestore();
 
 
+
+const rutasProtegidas = express.Router(); 
+rutasProtegidas.use((req, res, next) => {
+    const token = req.headers['access-token'];
+ 
+    if (token) {
+      jwt.verify(token, config.llave, (err, decoded) => {      
+        if (err) {
+          return res.json({ mensaje: 'Token inválida' });    
+        } else {
+          req.decoded = decoded;    
+          next();
+        }
+      });
+    } else {
+      res.send({ 
+          mensaje: 'Token no proveída.' 
+      });
+    }
+ });
+
+
+
+
+
+
+
+
 /*BOOK CRUD*/
-router.get('/book', function (req, res){
+router.get('/book', rutasProtegidas, function (req, res){
     bookController.getBooks(db).then(result =>{
         response.success(req, res, result, 200);
     })
@@ -25,7 +60,7 @@ router.get('/book', function (req, res){
 });
 
 
-router.get('/book/:id', function (req, res){
+router.get('/book/:id', rutasProtegidas ,function (req, res){
    
     bookController.getBookById(req.params.id ,db).then(result =>{
         response.success(req, res, result, 200);
@@ -36,7 +71,7 @@ router.get('/book/:id', function (req, res){
 });
 
 
-router.post('/book', function (request, res) {
+router.post('/book', rutasProtegidas , function(request, res) {
     bookController.createBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, db)
     .then((book)=>{
         response.success(request, res, book, 200);
@@ -46,7 +81,7 @@ router.post('/book', function (request, res) {
     })  
 });
 
-router.delete('/book/:id', function(request, res){
+router.delete('/book/:id', rutasProtegidas , function(request, res){
     bookController.deleteBook(request.params.id, db)
     .then(()=>{
         response.success(request, res, 'Eliminado Satisfactoriamente!', 200);
@@ -56,7 +91,7 @@ router.delete('/book/:id', function(request, res){
     })
 })
 
-router.put('/book/:id', function (request, res) {
+router.put('/book/:id', rutasProtegidas , function (request, res) {
     bookController.updateBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, request.params.id, db)
     .then(()=>{
         const edited = {
@@ -78,7 +113,7 @@ router.put('/book/:id', function (request, res) {
 
 /*USER CRUD*/
 
-router.get('/user', function (req, res){
+router.get('/user', rutasProtegidas ,function (req, res){
     userController.getUsers(db).then(result =>{
         response.success(req, res, result, 200);
     })
@@ -88,7 +123,7 @@ router.get('/user', function (req, res){
 });
 
 
-router.get('/user/:id', function (req, res){
+router.get('/user/:id', rutasProtegidas , function (req, res){
    
     userController.getUserById(req.params.id ,db).then(result =>{
         response.success(req, res, result, 200);
@@ -99,17 +134,17 @@ router.get('/user/:id', function (req, res){
 });
 
 
-router.post('/user', function (request, res) {
+router.post('/user', rutasProtegidas ,function (request, res) {
     userController.createUser(request.body.userName, request.body.name, request.body.lastName, request.body.password, request.body.email, request.body.roleName, db)
-    .then((book)=>{
-        response.success(request, res, book, 200);
+    .then((user)=>{
+        response.success(request, res, user, 200);
     })
     .catch(error=>{
         response.error(request, res, 'Informacion invalida', 400, 'error en el controlador')
     })  
 });
 
-router.delete('/user/:id', function(request, res){
+router.delete('/user/:id', rutasProtegidas ,function(request, res){
     userController.deleteUser(request.params.id, db)
     .then(()=>{
         response.success(request, res, 'Eliminado Satisfactoriamente!', 200);
@@ -119,7 +154,7 @@ router.delete('/user/:id', function(request, res){
     })
 })
 
-router.put('/user/:id', function (request, res) {
+router.put('/user/:id', rutasProtegidas ,function (request, res) {
     userController.updateUser(request.body.userName, request.body.name, request.body.lastName, request.body.password, request.body.email, request.body.roleName, request.params.id, db)
     .then(()=>{
         const edited = {
@@ -137,5 +172,38 @@ router.put('/user/:id', function (request, res) {
         response.error(request, res, 'Informacion invalida', 400, 'error en el controlador')
     })  
 });
+
+
+
+/*REGISTER USER*/
+router.post('/register', function (request, res) {
+    registerController.registerUser(request.body.userName, request.body.name, request.body.lastName, request.body.password, request.body.email, db)
+    .then((user)=>{
+        response.success(request, res, user, 200);
+    })
+    .catch(error=>{
+        response.error(request, res, 'Informacion invalida', 400, 'error en el controlador')
+    })  
+});
+
+
+/** LOGIN WITH JWT*/
+
+router.post('/login', function (request, res) {
+    authController.login(request.body.email, request.body.password, db, config, jwt)
+    .then((user)=>{
+        res.header({
+            "access-token": user.token
+        })
+        response.success(request, res, user, 200);
+    })
+    .catch(error=>{
+        response.error(request, res, 'Informacion invalida', 400, 'error en el controlador')
+    })  
+});
+
+
+
+
 
 module.exports = router;
