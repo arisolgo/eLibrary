@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config/config');
 const jwt = require('jsonwebtoken');
-const verifyToken = require('../config/verifyToken')
 const response = require('./response');
 const bookController = require('../components/book/controller');
 const userController = require('../components/user/controller');
