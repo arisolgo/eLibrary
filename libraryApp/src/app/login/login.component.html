@@ -5,15 +5,15 @@
       <div class=" card">
         <div class=" card-header"><h5 class=" title">Login</h5></div>
         <div class=" card-body">
-          <form>
+          
             <div class=" row">
               <div class=" col-md-5 pr-md-1">
                 <div class=" form-group">
-                  <label> Userrname </label>
+                  <label> Username </label>
                   <input
                     class=" form-control"
-                    
-                    placeholder=""
+                    [(ngModel)]= "user.email"
+                   
                     type="text"
                     
                   />
@@ -28,7 +28,8 @@
                   <label> Password </label>
                   <input
                     class=" form-control"
-                    placeholder=""
+                    
+                   [(ngModel)] = "user.password"
                     type="password"
                     
                   />
@@ -37,10 +38,11 @@
 
             </div>
 
-          </form>
+          
         </div>
         <div class=" card-footer">
-          <button class=" btn btn-fill btn-danger" type="submit">Login</button>
+          <button class=" btn btn-fill btn-danger" (click) ="login()" type="submit">Login</button>
+          <button style ="margin-left: 10px;"class=" btn btn-fill btn-danger" (click) ="register()" type="submit">Registrarse</button>
         </div>
       </div>
     </div>

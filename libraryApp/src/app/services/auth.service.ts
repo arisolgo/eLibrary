@@ -8,21 +8,20 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AuthService {
 
-  constructor(
-    private http: HttpClient,
-    public jwtHelper: JwtHelperService
-    ) { }
+  constructor(private http: HttpClient) { }
 
-  public getToken(): string {
-    return localStorage.getItem('token');
+  loginUser(user:Object){
+      return this.http.post('http://localhost:3000/login', user);
   }
-  public isAuthenticated(): boolean {
-    // get the token
-    const token = this.getToken();
-    // return a boolean reflecting 
-    // whether or not the token is expired
-    return this.jwtHelper.isTokenExpired(token);
+  
+  loggedIn(){
+    return !!localStorage.getItem('token');
   }
+
+  getToken(){
+      return localStorage.getItem('token');
+  }
+ 
   
 
 }

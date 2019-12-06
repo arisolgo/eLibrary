@@ -24,8 +24,8 @@ import { ListenBookComponent } from './listen-book/listen-book.component';
 import { LoginComponent } from './login/login.component';
 import { ReadBookComponent } from './read-book/read-book.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { HttpClientModule } from '@angular/common/http'
-
+import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http'
+import { TokenInterceptorService} from './services/token-interceptor.service'
 import { from } from 'rxjs';
 @NgModule({
   imports: [
@@ -41,7 +41,7 @@ import { from } from 'rxjs';
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, LibraryComponent, RegisterComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{provide: APP_BASE_HREF, useValue : '/',}, {provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
