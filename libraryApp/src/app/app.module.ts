@@ -1,36 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
+import { ToastrModule } from 'ngx-toastr';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { LibraryComponent } from './library/library.component';
-import { CreateBookComponent } from './create-book/create-book.component';
+import { AppComponent } from "./app.component";
+
+
+
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
+import { AppRoutingModule } from "./app-routing.module";
+import { ComponentsModule } from "./components/components.module";
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
+import {APP_BASE_HREF} from '@angular/common';
+import { UserComponent } from './pages/user/user.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
-import { ReadBookComponent } from './read-book/read-book.component';
-import { ListenBookComponent } from './listen-book/listen-book.component';
+import { CreateBookComponent } from './create-book/create-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListenBookComponent } from './listen-book/listen-book.component';
+import { LoginComponent } from './login/login.component';
+import { ReadBookComponent } from './read-book/read-book.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    LibraryComponent,
-    CreateBookComponent,
-    BookDetailComponent,
-    ReadBookComponent,
-    ListenBookComponent,
-    EditBookComponent
-  ],
   imports: [
-    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    ComponentsModule,
+    NgbModule,
+    RouterModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    RouterModule.forRoot([]),
+    BrowserModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  declarations: [AppComponent, DashboardComponent, UserComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

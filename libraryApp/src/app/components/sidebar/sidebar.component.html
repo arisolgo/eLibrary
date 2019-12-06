@@ -1,0 +1,22 @@
+<div class="logo">
+ <h1 style=" margin-left: 20px; margin-top: 18px;">
+ e-Library
+</h1>
+    </div>
+  
+ 
+
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="tim-icons  {{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>
