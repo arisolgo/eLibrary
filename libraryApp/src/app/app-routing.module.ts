@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { ReadBookComponent } from './read-book/read-book.component';
 
 const routes: Routes = [
 
@@ -26,7 +27,9 @@ const routes: Routes = [
           { path: "register", component: RegisterComponent },
           { path: "login",component:LoginComponent},
           {path: "book-detail",component:BookDetailComponent},
-          {path: "create-book",component:CreateBookComponent}
+          {path: "create-book",component:CreateBookComponent},
+          {path: "read-book",component:ReadBookComponent}
+          
         ]
       }
     ])

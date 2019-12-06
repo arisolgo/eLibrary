@@ -23,7 +23,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { ListenBookComponent } from './listen-book/listen-book.component';
 import { LoginComponent } from './login/login.component';
 import { ReadBookComponent } from './read-book/read-book.component';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   imports: [
     FormsModule,
@@ -34,6 +34,7 @@ import { ReadBookComponent } from './read-book/read-book.component';
     AppRoutingModule,
     RouterModule.forRoot([]),
     BrowserModule,
+    PdfViewerModule,
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, LibraryComponent, RegisterComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
