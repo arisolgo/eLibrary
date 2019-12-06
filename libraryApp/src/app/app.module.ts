@@ -27,6 +27,12 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http'
 import { TokenInterceptorService} from './services/token-interceptor.service'
 import { from } from 'rxjs';
+
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
+
 @NgModule({
   imports: [
     FormsModule,
@@ -38,10 +44,11 @@ import { from } from 'rxjs';
     RouterModule.forRoot([]),
     BrowserModule,
     PdfViewerModule,
+    
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, LibraryComponent, RegisterComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
-  providers: [{provide: APP_BASE_HREF, useValue : '/',}, {provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' },{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
