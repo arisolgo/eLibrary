@@ -5,15 +5,15 @@
       <div class=" card">
         <div class=" card-header"><h5 class=" title">Register</h5></div>
         <div class=" card-body">
-          <form>
+         
             <div class=" row">
               <div class=" col-md-5 pr-md-1">
                 <div class=" form-group">
-                  <label> Userrname </label>
+                  <label> Username </label>
                   <input
                     class=" form-control"
                     
-                    placeholder=""
+                    [(ngModel)] = "user.userName"
                     type="text"
                     
                   />
@@ -24,7 +24,7 @@
                   <label> Password </label>
                   <input
                     class=" form-control"
-                    placeholder=""
+                  
                     type="password"
                     
                   />
@@ -35,7 +35,7 @@
                   <label for="exampleInputEmail1"> Password Confirmation </label>
                   <input
                     class=" form-control"
-                    placeholder=""
+                    [(ngModel)] = "user.password"
                     type="password"
                   />
                 </div>
@@ -47,7 +47,7 @@
                   <label> First Name </label>
                   <input
                     class=" form-control"
-                    placeholder="First Name"
+                    [(ngModel)] = "user.name"
                     type="text"
                     
                   />
@@ -58,7 +58,7 @@
                   <label> Last Name </label>
                   <input
                     class=" form-control"
-                    placeholder="Last Name"
+                    [(ngModel)] = "user.lastName"
                     type="text"
                     
                   />
@@ -71,17 +71,17 @@
                   <label for="exampleInputEmail1"> Email </label>
                   <input
                     class=" form-control"
-                    placeholder="name@email.com"
+                    [(ngModel)] = "user.email"
                     type="email"
                   />
                 </div>
               </div>
             </div>
 
-          </form>
+          
         </div>
         <div class=" card-footer">
-          <button class=" btn btn-fill btn-danger" type="submit">Register</button>
+          <button class=" btn btn-fill btn-danger" (click) ="registerUser()" type="submit">Register</button>
         </div>
       </div>
     </div>
