@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const response = require('../../network/response');
-const bookController = require('./controller');
+const response = require('./response');
+const bookController = require('../components/book/controller');
 
 const admin = require('firebase-admin');
-const serviceAccount = require("../../jsonService.json");
+const serviceAccount = require("../jsonService.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -14,7 +14,7 @@ db = admin.firestore();
 
 
 /*BOOK CRUD*/
-router.get('/', function (req, res){
+router.get('/book', function (req, res){
     bookController.getBooks(db).then(result =>{
         response.success(req, res, result, 200);
     })
@@ -24,7 +24,7 @@ router.get('/', function (req, res){
 });
 
 
-router.get('/:id', function (req, res){
+router.get('/book/:id', function (req, res){
    
     bookController.getBookById(req.params.id ,db).then(result =>{
         response.success(req, res, result, 200);
@@ -35,7 +35,7 @@ router.get('/:id', function (req, res){
 });
 
 
-router.post('/', function (request, res) {
+router.post('/book', function (request, res) {
     bookController.createBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, db)
     .then((book)=>{
         response.success(request, res, book, 200);
@@ -45,7 +45,7 @@ router.post('/', function (request, res) {
     })  
 });
 
-router.delete('/:id', function(request, res){
+router.delete('/book/:id', function(request, res){
     bookController.deleteBook(request.params.id, db)
     .then(()=>{
         response.success(request, res, 'Eliminado Satisfactoriamente!', 200);
@@ -55,7 +55,7 @@ router.delete('/:id', function(request, res){
     })
 })
 
-router.put('/:id', function (request, res) {
+router.put('/book/:id', function (request, res) {
     bookController.updateBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, request.params.id, db)
     .then(()=>{
         const edited = {

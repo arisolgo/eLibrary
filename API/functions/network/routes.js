@@ -1,8 +1,8 @@
 express = require('express');
-const book = require('../components/book/network');
+const route = require('../network/network');
 
 const routes = function (server) {
-    server.use('/book', book);
+    server.use('/', route);
 }
 
 module.exports = routes;
