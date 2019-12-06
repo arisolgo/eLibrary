@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import Chart from 'chart.js';
+
+import { BookService } from '../services/book.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-library",
@@ -8,11 +10,23 @@ import Chart from 'chart.js';
 })
 export class LibraryComponent implements OnInit {
 
-  //books:
-  constructor() {}
+  books:any = [];
+  constructor(private bookService:BookService, private router:Router, private route:ActivatedRoute) {}
 
   ngOnInit() {
-   
+    this.getAllBooks();
+  }
+
+  getAllBooks(){
+      this.bookService.getAllBooks().subscribe(result=>{
+          console.log(result);
+          this.books = result.body;
+          console.log(this.books);
+      })
+  }
+
+  goToDetail(id){
+    this.router.navigate(["../book-detail/" + id ],{relativeTo: this.route}) 
   }
 
 }

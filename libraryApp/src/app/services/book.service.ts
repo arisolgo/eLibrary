@@ -13,7 +13,7 @@ export class BookService {
     return this.http.get('http://localhost:3000/book');
   }
   getBookById(id: any){
-    return this.http.get(`http://localhost:3000/book/${id}`);
+    return this.http.get("http://localhost:3000/book/"+id);
   }
   createBook(book: any){
     return  this.http.post<any>("http://localhost:3000/book",book)
