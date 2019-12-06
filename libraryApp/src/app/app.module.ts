@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
 
@@ -24,6 +24,9 @@ import { ListenBookComponent } from './listen-book/listen-book.component';
 import { LoginComponent } from './login/login.component';
 import { ReadBookComponent } from './read-book/read-book.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { HttpClientModule } from '@angular/common/http'
+
+import { from } from 'rxjs';
 @NgModule({
   imports: [
     FormsModule,
