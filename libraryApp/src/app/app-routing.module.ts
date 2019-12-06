@@ -4,8 +4,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { UserComponent } from './pages/user/user.component';
+import { LibraryComponent } from './library/library.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 const routes: Routes = [
 
@@ -19,8 +22,11 @@ const routes: Routes = [
         path: "",
         component: AppComponent,
         children: [
-          { path: "dashboard", component: DashboardComponent },
-          { path: "user", component: UserComponent },
+          { path: "library", component: LibraryComponent },
+          { path: "register", component: RegisterComponent },
+          { path: "login",component:LoginComponent},
+          {path: "book-detail",component:BookDetailComponent},
+          {path: "create-book",component:CreateBookComponent}
         ]
       }
     ])

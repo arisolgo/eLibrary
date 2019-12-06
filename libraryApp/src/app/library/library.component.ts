@@ -2,10 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import Chart from 'chart.js';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "dashboard.component.html"
+  selector: "app-library",
+  templateUrl: "library.component.html",
+  styleUrls: ['./library.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class LibraryComponent implements OnInit {
   public canvas : any;
   public ctx;
   public datasets: any;
@@ -307,8 +308,17 @@ export class DashboardComponent implements OnInit {
       }
     };
 
-    this.canvas = document.getElementById("chartLineRed");
-    this.ctx = this.canvas.getContext("2d");
+    //this.canvas = document.getElementById("chartLineRed");
+   // this.ctx = this.canvas.getContext("2d");
+
+    var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, 'rgba(233,32,16,0.2)');
+    gradientStroke.addColorStop(0.4, 'rgba(233,32,16,0.0)');
+    gradientStroke.addColorStop(0, 'rgba(233,32,16,0)'); //red colors
+
+  //  this.canvas = document.getElementById("sidebarElement");
+   // this.ctx = this.canvas.getContext("2d");
 
     var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
 

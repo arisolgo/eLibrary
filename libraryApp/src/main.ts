@@ -1,11 +1,11 @@
 /*
  =========================================================
- * Black Dashboard Angular - v1.0.0
+ * Black Library Angular - v1.0.0
  =========================================================
 
  * Product Page: https://www.creative-tim.com/product/black-dashboard-angular
  * Copyright 2019 Creative Tim (https://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+ * Licensed under MIT (https://github.com/creativetimofficial/argon-library/blob/master/LICENSE.md)
 
  =========================================================
 

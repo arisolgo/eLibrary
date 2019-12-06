@@ -13,10 +13,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LibraryComponent } from './library/library.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
-import { UserComponent } from './pages/user/user.component';
+import { RegisterComponent } from './register/register.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
@@ -36,7 +36,7 @@ import { ReadBookComponent } from './read-book/read-book.component';
     BrowserModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, DashboardComponent, UserComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
+  declarations: [AppComponent, LibraryComponent, RegisterComponent, BookDetailComponent, CreateBookComponent, EditBookComponent, ListenBookComponent, LoginComponent, ReadBookComponent],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]
 })

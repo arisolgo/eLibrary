@@ -50,7 +50,7 @@
         }
 
         > .nav,
-        .user .info{
+        .register .info{
           [data-toggle="collapse"] ~ div > ul > li > a{
               span{
                 display: inline-block;
@@ -345,7 +345,7 @@
       @include linear-gradient($success-states, $success);
     }
 
-    .user{
+    .register{
         padding-bottom: 20px;
         margin:20px auto 0;
         position: relative;
@@ -524,8 +524,8 @@
 
           .sidebar-wrapper{
             > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-            .user .info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-            .user .info > a > span,
+            .register .info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
+            .register .info > a > span,
             > .nav li > a p{
                 @include transform-translate-x(-25px);
                 opacity: 0;
@@ -556,8 +556,8 @@
 
             > .nav li > a p,
             > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-            .user .info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-            .user .info > a > span{
+            .register .info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
+            .register .info > a > span{
               @include transform-translate-x(0px);
               opacity: 1;
             }
