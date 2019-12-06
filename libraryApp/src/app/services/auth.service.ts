@@ -8,14 +8,28 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AuthService {
 
+  private _registerUrl = "http://localhost:3000/api/register"
+  private _loginUrl = "http://localhost:3000/api/login"
+
   constructor(
     private http: HttpClient,
-    public jwtHelper: JwtHelperService
+   // public jwtHelper: JwtHelperService
     ) { }
 
-  public getToken(): string {
+    registerUser(user){
+      return this.http.post<any>(this._registerUrl,user)
+    }
+    loginUser(user){
+      return this.http.post<any>(this._loginUrl,user)
+    }
+    loggedIn(){
+      return !!localStorage.getItem('token')
+    }
+    
+   getToken() {
     return localStorage.getItem('token');
   }
+  /*
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
@@ -23,7 +37,7 @@ export class AuthService {
     // whether or not the token is expired
     return this.jwtHelper.isTokenExpired(token);
   }
-  
+  */
 
 }
 
