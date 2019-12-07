@@ -20,7 +20,7 @@ export class LibraryComponent implements OnInit {
   getAllBooks(){
       this.bookService.getAllBooks().subscribe(result=>{
           console.log(result);
-          this.books = result.body;
+          this.books = result;
           console.log(this.books);
       })
   }

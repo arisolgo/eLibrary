@@ -6,14 +6,16 @@
   </div>
   <div class=" row" style="display: flex; justify-content:space-between;">
     <div class=" col-lg-4">
-      <div (click) = "goToDetail(item.id)" class=" card card-chart" *ngFor = "let item of books">
+      <div (click) = "goToDetail(item.id)" class=" card card-chart" *ngFor = "let item of books.body">
         <div class=" card-header">
           <h5 class=" card-category">{{item.author}}</h5>
           <h3 class=" card-title">
             Title: {{item.title}}
           </h3>
         </div>
-        <div class=" card-body">
+        <div class=" card-body" >
+          <img src= "../assets/img/3D-book-cover-300x300.png" >
+          
           <div class=" chart-area"></div>
         </div>
       </div>

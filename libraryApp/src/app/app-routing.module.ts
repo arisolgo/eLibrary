@@ -23,9 +23,10 @@ const routes: Routes = [
         path: "",
         component: AppComponent,
         children: [
+          { path: "login",component:LoginComponent},
           { path: "library", component: LibraryComponent },
           { path: "register", component: RegisterComponent },
-          { path: "login",component:LoginComponent},
+         
           {path: "book-detail/:id",component:BookDetailComponent},
           {path: "create-book",component:CreateBookComponent},
           {path: "read-book",component:ReadBookComponent}
