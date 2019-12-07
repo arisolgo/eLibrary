@@ -1,8 +1,8 @@
 
 
-function registerUser(userName, name, lastName, password, email, roleName, db){
+function registerUser(userName, name, lastName, password, email, db){
     return new Promise((resolve, reject)=>{
-        if(!userName || !name || !lastName || !password || !email || !roleName){
+        if(!userName || !name || !lastName || !password || !email){
             reject('Datos incorrectos');
             return false;
         }

@@ -49,7 +49,7 @@ rutasProtegidas.use((req, res, next) => {
 
 
 /*BOOK CRUD*/
-router.get('/book', rutasProtegidas, function (req, res){
+router.get('/book',  function (req, res){
     bookController.getBooks(db).then(result =>{
         response.success(req, res, result, 200);
     })
@@ -59,7 +59,7 @@ router.get('/book', rutasProtegidas, function (req, res){
 });
 
 
-router.get('/book/:id', rutasProtegidas ,function (req, res){
+router.get('/book/:id',   function (req, res){
    
     bookController.getBookById(req.params.id ,db).then(result =>{
         response.success(req, res, result, 200);
@@ -70,7 +70,7 @@ router.get('/book/:id', rutasProtegidas ,function (req, res){
 });
 
 
-router.post('/book', rutasProtegidas , function(request, res) {
+router.post('/book',    function(request, res) {
     bookController.createBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, db)
     .then((book)=>{
         response.success(request, res, book, 200);
@@ -80,7 +80,7 @@ router.post('/book', rutasProtegidas , function(request, res) {
     })  
 });
 
-router.delete('/book/:id', rutasProtegidas , function(request, res){
+router.delete('/book/:id',    function(request, res){
     bookController.deleteBook(request.params.id, db)
     .then(()=>{
         response.success(request, res, 'Eliminado Satisfactoriamente!', 200);
@@ -90,7 +90,7 @@ router.delete('/book/:id', rutasProtegidas , function(request, res){
     })
 })
 
-router.put('/book/:id', rutasProtegidas , function (request, res) {
+router.put('/book/:id',    function (request, res) {
     bookController.updateBook(request.body.user, request.body.title, request.body.description, request.body.editorial, request.body.author, request.params.id, db)
     .then(()=>{
         const edited = {
@@ -112,7 +112,7 @@ router.put('/book/:id', rutasProtegidas , function (request, res) {
 
 /*USER CRUD*/
 
-router.get('/user', rutasProtegidas ,function (req, res){
+router.get('/user',   function (req, res){
     userController.getUsers(db).then(result =>{
         response.success(req, res, result, 200);
     })
@@ -122,7 +122,7 @@ router.get('/user', rutasProtegidas ,function (req, res){
 });
 
 
-router.get('/user/:id', rutasProtegidas , function (req, res){
+router.get('/user/:id',    function (req, res){
    
     userController.getUserById(req.params.id ,db).then(result =>{
         response.success(req, res, result, 200);
@@ -133,7 +133,7 @@ router.get('/user/:id', rutasProtegidas , function (req, res){
 });
 
 
-router.post('/user', rutasProtegidas ,function (request, res) {
+router.post('/user',   function (request, res) {
     userController.createUser(request.body.userName, request.body.name, request.body.lastName, request.body.password, request.body.email, request.body.roleName, db)
     .then((user)=>{
         response.success(request, res, user, 200);
@@ -143,7 +143,7 @@ router.post('/user', rutasProtegidas ,function (request, res) {
     })  
 });
 
-router.delete('/user/:id', rutasProtegidas ,function(request, res){
+router.delete('/user/:id'   ,function(request, res){
     userController.deleteUser(request.params.id, db)
     .then(()=>{
         response.success(request, res, 'Eliminado Satisfactoriamente!', 200);
@@ -153,7 +153,7 @@ router.delete('/user/:id', rutasProtegidas ,function(request, res){
     })
 })
 
-router.put('/user/:id', rutasProtegidas ,function (request, res) {
+router.put('/user/:id',   function (request, res) {
     userController.updateUser(request.body.userName, request.body.name, request.body.lastName, request.body.password, request.body.email, request.body.roleName, request.params.id, db)
     .then(()=>{
         const edited = {
